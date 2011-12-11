@@ -67,7 +67,7 @@ class CoffeeResponse(CoffeePacket):
 
     def build(self):
         s = CoffeePacket.build(self)
-        o = {'mifareid':self.mifareid, 'cardid':self.cardid}
+        o = {}
         return dict(s.items() + o.items())
 
     def compile(self):
@@ -124,4 +124,5 @@ def test():
     r3c = r3.compile('private.pem')
     r3n = p.parseRequest(r3c, 'public.pem')
     print r3
+    print r3c
     print r3n
