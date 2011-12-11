@@ -22,8 +22,8 @@ class CoffeePacket(object):
         global id
         id += 1
         self.id = id
-        f = {'id':self.id, 'time':self.time, 'rand':random.randint(1000, 9999), 'success':self.success, 'action':self.action}
-        return dict(f.items() + self.data.items())
+        f = {'id':self.id, 'time':self.time, 'rand':random.randint(1000, 9999), 'success':self.success, 'action':self.action, 'data':self.data}
+        return f
 
 class CoffeeRequest(CoffeePacket):
     mifareid = 0
@@ -107,6 +107,7 @@ class CoffeeProtocol(object):
         try:
             packet = resp
             r = CoffeeResponse()
+            
             for key in packet:
                 setattr(r, key, packet[key])
         except:
