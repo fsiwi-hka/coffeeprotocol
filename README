@@ -1,1 +1,7 @@
-protocol lib thingy for coffee
+Needs: python-m2crypto
+
+Generate keys:
+openssl genrsa -out private.pem 1024
+openssl rsa -in private.pem -pubout -out public.pem
+
+CoffeeSale needs private.pem, CoffeeServer needs public.pem
