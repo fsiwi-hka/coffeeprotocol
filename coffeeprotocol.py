@@ -22,7 +22,7 @@ class CoffeePacket(object):
         global id
         id += 1
         self.id = id
-        f = {'id':self.id, 'time':self.time, 'rand':random.randint(1000, 9999), 'success':self.success, 'action':self.action, 'data':self.data}
+        f = {'id':self.id, 'time':time.time(), 'success':self.success, 'action':self.action, 'data':self.data}
         return f
 
 class CoffeeRequest(CoffeePacket):
@@ -114,16 +114,3 @@ class CoffeeProtocol(object):
             return None
 
         return r
-
-def test():
-    p = CoffeeProtocol()
-
-    r1 = p.buildRequest(1, 61)
-    r2 = p.buildRequest(2, 62)
-    r3 = p.buildRequest(3, 63)
-
-    r3c = r3.compile('private.pem')
-    r3n = p.parseRequest(r3c, 'public.pem')
-    print r3
-    print r3c
-    print r3n
