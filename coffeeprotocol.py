@@ -12,16 +12,18 @@ class CoffeePacket(object):
     data = {}
     
     def __init__(self):
+        global id
+        id += 1
+        self.id = id
         self.time = time.time()
+        self.data = {}
+        self.success = False
         return
 
     def __repr__(self):
         return "<CoffeePacket(id:'%s', time:'%s', success:'%s', action:'%s')>" %(self.id, self.time, self.success, self.action)
 
     def build(self):
-        global id
-        id += 1
-        self.id = id
         f = {'id':self.id, 'time':self.time, 'rand':random.randint(1000, 9999), 'success':self.success, 'action':self.action, 'data':self.data}
         return f
 
